@@ -51,7 +51,7 @@ def add_timespan (db, timespan:str, days:int):
     cur.execute("INSERT INTO Timespans (timespan, days) VALUES (?, ?)", (timespan, days))
     db.commit()
 
-def get_data(db, table):
+def __get_data(db, table):
     """Returns all content of the Habits table. For internal use only!"""
     cur = db.cursor()
     cur.execute("SELECT * FROM "+table)

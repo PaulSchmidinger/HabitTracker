@@ -5,6 +5,11 @@
       "taskLabel": "Task-db",
       "appliesTo": "db.py",
       "type": "launch"
+    },
+    {
+      "taskLabel": "Task-test",
+      "appliesTo": "test.py",
+      "type": "launch"
     }
   ]
 }
