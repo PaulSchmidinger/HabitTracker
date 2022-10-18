@@ -8,6 +8,7 @@ bla
 ## Installation
 '''shell
 pip install -r requirements.txt
+python install.py
 '''
 
 ## Useage
