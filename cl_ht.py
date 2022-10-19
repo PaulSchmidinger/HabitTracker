@@ -14,9 +14,9 @@ class habits:
         li_habit_names = []
         for all in habit_names: li_habit_names.append(all[0])
         if name in li_habit_names:
-            raise Exception("Name already in database!")
+            return print("Name already in database!")
         else:
-            self.name = name      
+            self.name = name  
 
         #Checks, if timespan is in the database
         self.timespan = get_timespan_id(get_db(), timespan=timespan)
