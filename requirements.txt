@@ -1,4 +1,3 @@
 pandas
 click
 pytest
-os

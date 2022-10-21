@@ -1,8 +1,8 @@
 #PS
 
 import click
-from cl_ht import habits, completion
 from analyse import return_all_timespans, return_habits, return_longest_streak
+import cl_ht
 
 print("Welcome to the habit tracker backend.")
 
@@ -14,17 +14,17 @@ def cli():
 @click.option('--name', type=str, help="Specify the name of the new habit.")
 @click.option('--timespan', type=str, help="Specify the timespan of the new habit. If you are unsure which timespans exist, please use the command 'python main.py timespans'.")
 def create_habit(name, timespan):
-    habits(name=name, timespan=timespan)
+    cl_ht.habits(name=name, timespan=timespan)
 
 @cli.command(name='dea_habit', help="This command is used to deactivate a specified habit.")
 @click.option('--name', type=str, help="Specify the name of the habit, you want to deactivate.")
 def dea_habit(name):
-    habits.deactivate_habit(name)
+    cl_ht.habits.deactivate_habit(name)
 
 @cli.command(name='check', help="This command is used to check a specified habit.")
 @click.option('--name', type=str, help="Specify the name of the habit, you want to check.")
 def check(name):
-    compl = completion()
+    compl = cl_ht.completion()
     compl.check_habit(name)
 
 @cli.command(name='habits', help="This command is used to get a list of all habits.")

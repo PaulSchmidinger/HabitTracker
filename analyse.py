@@ -45,7 +45,7 @@ def return_longest_streak(habitname:str = "all", timespan:str = "all"):
         li_unique_habits = df_streak_data.Habitname.unique().tolist()
 
         li_habit_df = []
-        li_streak_len = []
+        li_maxl = []
 
         for habit in li_unique_habits:
             df = df_streak_data[df_streak_data['Habitname'] == habit]
@@ -55,12 +55,11 @@ def return_longest_streak(habitname:str = "all", timespan:str = "all"):
             li_intime = df.in_time.to_list()
             str_intime = "".join(str(e) for e in li_intime)
             li_intime = str_intime.split("0")
-            li_maxl = []
             for e in li_intime:
                     l = len(e)
                     li_maxl.append(l)
-            li_streak_len.append(max(li_maxl))
-        if max(li_streak_len) == 0:
+
+        if max(li_maxl) == 0:
             print("Your longest run streak for the timespan '"+timespan+"' is: "+str(max(li_maxl))+" Periods.")
         else:
             print("Your longest run streak for the timespan '"+timespan+"' is: "+str(max(li_maxl))+" Periods. Congratulations!!")
