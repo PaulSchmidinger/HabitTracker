@@ -35,7 +35,6 @@ class TestHabit:
         return_habits(all=1)
         return_habits(timespan="week")
         return_all_timespans()
-        return_longest_streak(habitname="Fencing")
         streak = return_longest_streak(timespan="week")
         if streak == 6: print ("Proof. Habit calculation works.")
         streak = return_longest_streak(habitname="Jogging")

@@ -1,5 +1,7 @@
 # PS
 from db import get_db, get_habits, get_timespans, get_streak_data
+import matplotlib as plt
+import seaborn as sns
 
 
 def return_habits(all: int = 1, timespan: str = "all"):
@@ -31,12 +33,16 @@ def return_longest_streak(habitname: str = "all", timespan: str = "all"):
     # by habitname
     if timespan == "all" and habitname != "all":
         li_intime = df_streak_data.in_time.to_list()
+        breaks = li_intime.count(0)
         str_intime = "".join(str(e) for e in li_intime)
         li_intime = str_intime.split("0")
         li_maxl = []
+        print("Your run streaks for '"+habitname+"' are:")
         for e in li_intime:
             l = len(e)
             li_maxl.append(l)
+            print (l)
+        print("You broke the habit "+str(breaks)+" times.")
 
         if max(li_maxl) == 0:
             print("Your longest run streak for '"+habitname +
@@ -57,12 +63,16 @@ def return_longest_streak(habitname: str = "all", timespan: str = "all"):
             li_habit_df.append(df)
 
         for df in li_habit_df:
+            print("Your run streaks for the habit '"+df.Habitname.values[0]+"' are:")
             li_intime = df.in_time.to_list()
+            breaks = li_intime.count(0)
             str_intime = "".join(str(e) for e in li_intime)
             li_intime = str_intime.split("0")
             for e in li_intime:
                 l = len(e)
                 li_maxl.append(l)
+                print(l)
+            print("You broke the habit "+str(breaks)+" times.")
 
         if max(li_maxl) == 0:
             print("Your longest run streak for the timespan '" +
@@ -70,6 +80,12 @@ def return_longest_streak(habitname: str = "all", timespan: str = "all"):
         else:
             print("Your longest run streak for the timespan '"+timespan +
                   "' is: "+str(max(li_maxl))+" Periods. Congratulations!!")
+
+        #Generate grouped bar chart
+        df_counts = df_streak_data[['Habitname','in_time']].groupby(by="Habitname", as_index=True).value_counts().unstack().fillna(0)
+        df_counts.plot.bar()
+        plt.pyplot.show(block=True)
+
     return max(li_maxl)
 
 
@@ -80,3 +96,5 @@ def return_all_timespans():
     for row in li_timespans:
         print("Name: "+row[0].capitalize())
         print("Duration: "+str(row[1])+" Days")
+
+return_longest_streak(timespan="week")
