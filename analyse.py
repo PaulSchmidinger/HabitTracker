@@ -70,6 +70,7 @@ def return_longest_streak(habitname: str = "all", timespan: str = "all"):
         else:
             print("Your longest run streak for the timespan '"+timespan +
                   "' is: "+str(max(li_maxl))+" Periods. Congratulations!!")
+    return max(li_maxl)
 
 
 def return_all_timespans():

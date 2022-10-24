@@ -1,6 +1,6 @@
 # PS
 
-from cl_ht import habits, completion
+from cl_ht import Habits, Completion
 from db import get_db, create_tables, add_habit, add_check, add_timespan, get_habit_names
 from analyse import return_all_timespans, return_habits, return_longest_streak
 
@@ -24,11 +24,11 @@ class TestHabit:
 
     def test_habittracker(self):
         """Test Habittracker"""
-        habit = habits("test1", "week")
-        habits.deactivate_habit("test1")
+        habit = Habits("test1", "week")
+        Habits.deactivate_habit("test1")
         get_habit_names(self.db, 1)
-        compl = completion()
-        completion.check_habit(compl, "test1")
+        compl = Completion()
+        Completion.check_habit(compl, "test1")
 
     def test_analyse(self):
         """Test analysis module"""
@@ -36,7 +36,10 @@ class TestHabit:
         return_habits(timespan="week")
         return_all_timespans()
         return_longest_streak(habitname="Fencing")
-        return_longest_streak(timespan="week")
+        streak = return_longest_streak(timespan="week")
+        if streak == 6: print ("Proof. Habit calculation works.")
+        streak = return_longest_streak(habitname="Jogging")
+        if streak == 6: print ("Proof. Habit calculation works.")
 
     def teardown_method(self):
         pass
