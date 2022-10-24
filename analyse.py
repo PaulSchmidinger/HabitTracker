@@ -1,7 +1,6 @@
 # PS
 from db import get_db, get_habits, get_timespans, get_streak_data
 import matplotlib as plt
-import seaborn as sns
 
 
 def return_habits(all: int = 1, timespan: str = "all"):
